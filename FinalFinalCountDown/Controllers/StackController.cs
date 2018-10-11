@@ -16,7 +16,7 @@ namespace FinalFinalCountDown.Controllers
 
         //declare vars
         static Stack<string> myStack = new Stack<string>();
-        int iStackCount = 0;
+        static int iStackCount = 0;
 
         //method for adding to stack
         public ActionResult addToStack()
@@ -33,7 +33,8 @@ namespace FinalFinalCountDown.Controllers
 
             for (iStackCount = 1; iStackCount < 2001; iStackCount++)
             {
-                myStack.Push("\nNew Entry " + iStackCount + " \t");
+                myStack.Push("New Entry " + iStackCount + " ");
+                
             }
 
             return View("Index");
@@ -44,7 +45,7 @@ namespace FinalFinalCountDown.Controllers
         {
             foreach (string s in myStack)
             {
-                ViewBag.displayStack += s;
+                ViewBag.displayStack += s + "<br>";
             }
             return View("Index");
 
@@ -53,7 +54,15 @@ namespace FinalFinalCountDown.Controllers
         //method to delete an item from the stack
         public ActionResult deleteFromStack()
         {
-            myStack.Pop();
+            if (myStack.Count == 0)
+            {
+                ViewBag.emptyStack = "ERROR: There are no items in the stack. Delete was unsuccessful.";
+            }
+            else
+            {
+                myStack.Pop();
+            }
+            
 
             return View("Index");
 
@@ -76,9 +85,9 @@ namespace FinalFinalCountDown.Controllers
             bool isFound = false;
             foreach (string s in myStack)
             {
-                if (s == "New Entry 12 ")
+                if (s == "New Entry 1234 ")
                 {
-                    ViewBag.isFound = "The number twelve was found in the stack. It took:";
+                    ViewBag.isFound = "The number 1234 was found in the stack. It took:";
                     isFound = true;
                 }
             }
@@ -87,7 +96,7 @@ namespace FinalFinalCountDown.Controllers
 
             if (isFound == false)
             {
-                ViewBag.isFound = "The number twelve was not found in the stack. We searched for:";
+                ViewBag.isFound = "The number 1234 was not found in the stack. It took:";
             }
 
             TimeSpan ts = timeMe.Elapsed;
