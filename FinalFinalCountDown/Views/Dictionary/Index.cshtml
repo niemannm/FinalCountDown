@@ -25,13 +25,14 @@
         }
     }
 
-    else if (ViewBag.display == "Display")
-    {
-        <h2>Your Dictionary Contains @ViewBag.MyDictionary.Count Items</h2>
-        foreach (var item in ViewBag.MyDictionary)
-        {
-            <p>@item</p>
-        }
-    }
+    
+}
+@if (ViewBag.display == "Search")
+{
+    <p>@Html.Raw(ViewBag.message)</p>
+}
+@if (ViewBag.display == "Delete")
+{
+    <p>@ViewBag.message</p>
 }
 
