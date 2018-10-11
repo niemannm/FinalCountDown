@@ -3,5 +3,35 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>WELCOME TO THE DICTIONARY</h2>
+
+<ol>
+    <li><a href="@Url.Action("AddOne", "Dictionary")" class="w3-bar-item w3-button">Add one item to Dictionary</a></li>
+    <li><a href="@Url.Action("AddMany", "Dictionary")" class="w3-bar-item w3-button">Add Huge List of Items to Dictionary</a></li>
+    <li><a href="@Url.Action("Display", "Dictionary")" class="w3-bar-item w3-button">Display Dictionary</a></li>
+    <li><a href="@Url.Action("Delete", "Dictionary")" class="w3-bar-item w3-button">Delete from Dictionary</a></li>
+    <li><a href="@Url.Action("Clear", "Dictionary")" class="w3-bar-item w3-button">Clear Dictionary</a></li>
+    <li><a href="@Url.Action("Search", "Dictionary")" class="w3-bar-item w3-button">Search Dictionary</a></li>
+    <li><a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button">Return to Main Menu</a></li>
+</ol>
+
+@{
+    if (ViewBag.display == "Display")
+    {
+        <h2>Your Dictionary Contains @ViewBag.MyDictionary.Count Items</h2>
+        foreach (var item in ViewBag.MyDictionary)
+        {
+            <p>@item</p>
+        }
+    }
+
+    else if (ViewBag.display == "Display")
+    {
+        <h2>Your Dictionary Contains @ViewBag.MyDictionary.Count Items</h2>
+        foreach (var item in ViewBag.MyDictionary)
+        {
+            <p>@item</p>
+        }
+    }
+}
 
