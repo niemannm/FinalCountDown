@@ -45,7 +45,7 @@ namespace FinalFinalCountDown.Controllers
         {
             foreach (string s in myStack)
             {
-                ViewBag.displayStack += s + "<br>";
+                ViewBag.displayStack += s + "&emsp;&emsp;";
             }
             return View("Index");
 
