@@ -12,19 +12,21 @@ namespace FinalFinalCountDown.Controllers
         public static int myCount = 1;
         public static String myKey = "";
         public static String isDisplay = "";
+        public static String message = "";
 
         // GET: Dictionary
         public ActionResult Index()
         {
             ViewBag.MyDictionary = dUserDictionary;
             ViewBag.display = isDisplay;
+            ViewBag.message = message;
             return View();
         }
         public ActionResult AddOne()
         {
             isDisplay = "AddOne";
             ViewBag.display = isDisplay;
-            myKey = "Entry #" + myCount.ToString();
+            myKey = "New Entry #" + myCount.ToString();
             dUserDictionary.Add(myKey, myCount);
             ViewBag.MyDictionary = dUserDictionary;
             ++myCount;
@@ -58,7 +60,32 @@ namespace FinalFinalCountDown.Controllers
         {
             isDisplay = "Delete";
             ViewBag.display = isDisplay;
+            String itemToDelete = "New Entry #6";
+            bool exists = false;
+            int Value = 0;
+            String key = "";
 
+            foreach (var item in dUserDictionary)
+            {
+                if (item.Key == itemToDelete)
+                {
+                    exists = true;
+
+                    Value = item.Value;
+                    key = item.Key;
+                }
+            }
+            if (exists)
+            {
+                dUserDictionary.Remove(key);
+                message = itemToDelete + " and its associated value was deleted.";
+                ViewBag.message = message;
+            }
+            else
+            {
+                message = itemToDelete + " could not be deleted because it was not found";
+                ViewBag.message = message;
+            }
 
             return View("Index");
         }
@@ -75,14 +102,45 @@ namespace FinalFinalCountDown.Controllers
         {
             isDisplay = "Search";
             ViewBag.display = isDisplay;
-            String searchValue = "New Entry #1";
+            String searchValue = "New Entry #2";
+            bool exists = false;
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+
+
+
+
+
+
+
+       
+
+
+            int Value = 0;
+            sw.Start();
             foreach (var item in dUserDictionary)
             {
                 if (item.Key == searchValue)
                 {
-                    ViewBag.SearchItem = item;
+                    exists = true;
+                    
+                    Value = item.Value;
                 }
             }
+            sw.Stop();
+            TimeSpan ts = sw.Elapsed;
+
+            if (exists)
+            {
+                message = searchValue + " was found in the dictionary. The value associated with the key is: " + Value.ToString() + "<br> It took " + sw.Elapsed + " to search the dictionary";
+                ViewBag.message = message;
+            }
+            else
+            {
+                message = searchValue + " was not found as a key in this dictionary" + "<br> It took " + sw.Elapsed + " to search the dictionary";
+                ViewBag.message = message;
+            }
+                     
+            
 
 
             return View("Index");
