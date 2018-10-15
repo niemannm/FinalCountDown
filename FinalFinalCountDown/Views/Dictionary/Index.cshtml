@@ -5,6 +5,7 @@
 
 <h2>WELCOME TO THE DICTIONARY</h2>
 
+<!--Display Dictionary Menu-->
 <ol>
     <li><a href="@Url.Action("AddOne", "Dictionary")" class="w3-bar-item w3-button">Add one item to Dictionary</a></li>
     <li><a href="@Url.Action("AddMany", "Dictionary")" class="w3-bar-item w3-button">Add Huge List of Items to Dictionary</a></li>
@@ -16,6 +17,7 @@
 </ol>
 
 @{
+    //Loop through the dictionary and display the key with its associated value
     if (ViewBag.display == "Display")
     {
         <h2>Your Dictionary Contains @ViewBag.MyDictionary.Count Items</h2>
@@ -25,7 +27,7 @@
         }
     }
 
-    
+
 }
 @if (ViewBag.display == "Search")
 {

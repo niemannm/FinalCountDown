@@ -22,6 +22,7 @@ namespace FinalFinalCountDown.Controllers
             ViewBag.message = message;
             return View();
         }
+        //Add one item to the dictionary
         public ActionResult AddOne()
         {
             isDisplay = "AddOne";
@@ -32,6 +33,7 @@ namespace FinalFinalCountDown.Controllers
             ++myCount;
             return View("Index");
         }
+        //Adds 2000 items to the dictionary
         public ActionResult AddMany()
         {
             isDisplay = "AddMany";
@@ -49,6 +51,7 @@ namespace FinalFinalCountDown.Controllers
             }
             return View("Index");
         }
+        //Displays the dictionary - Used alongside razor code in the view
         public ActionResult Display()
         {
             isDisplay = "Display";
@@ -56,6 +59,7 @@ namespace FinalFinalCountDown.Controllers
             ViewBag.MyDictionary = dUserDictionary;
             return View("Index");
         }
+        //Searches for "New Entry #6" in the dictionary and deletes it
         public ActionResult Delete()
         {
             isDisplay = "Delete";
@@ -78,12 +82,14 @@ namespace FinalFinalCountDown.Controllers
             if (exists)
             {
                 dUserDictionary.Remove(key);
+                //Sends a message if it was found
                 message = itemToDelete + " and its associated value was deleted.";
                 ViewBag.message = message;
                 
             }
             else
             {
+                //sends a message if it was not found
                 message = itemToDelete + " could not be deleted because it was not found";
                 ViewBag.message = message;
             }
@@ -91,6 +97,7 @@ namespace FinalFinalCountDown.Controllers
             return View("Index");
         }
 
+        //Clears everything from the dictionary and resets the count
         public ActionResult Clear()
         {
             isDisplay = "Clear";
@@ -101,6 +108,7 @@ namespace FinalFinalCountDown.Controllers
             dUserDictionary.Clear();
             return View("Index");
         }
+        //Searches for an item in the dictionary and sends the result + the time required to search to the view
         public ActionResult Search()
         {
             isDisplay = "Search";
@@ -108,16 +116,6 @@ namespace FinalFinalCountDown.Controllers
             String searchValue = "New Entry #2";
             bool exists = false;
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-
-
-
-
-
-
-
-       
-
-
             int Value = 0;
             sw.Start();
             foreach (var item in dUserDictionary)
