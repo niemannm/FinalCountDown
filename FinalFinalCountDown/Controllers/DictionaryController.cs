@@ -80,7 +80,7 @@ namespace FinalFinalCountDown.Controllers
                 dUserDictionary.Remove(key);
                 message = itemToDelete + " and its associated value was deleted.";
                 ViewBag.message = message;
-                myCount = myCount - 1;
+                
             }
             else
             {
