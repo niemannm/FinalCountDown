@@ -83,20 +83,21 @@ namespace FinalFinalCountDown.Controllers
             timeMe.Start();
 
             bool isFound = false;
+
             foreach (string s in myStack)
             {
-                if (s == "New Entry 1234 ")
+                if (s == "New Entry 12 ")
                 {
-                    ViewBag.isFound = "The number 1234 was found in the stack. It took:";
+                    ViewBag.isFound = "The number 12 was found in the stack. It took:";
                     isFound = true;
+                    
                 }
             }
-
             timeMe.Stop();
 
             if (isFound == false)
             {
-                ViewBag.isFound = "The number 1234 was not found in the stack. It took:";
+                ViewBag.isFound = "The number 12 was not found in the stack. It took:";
             }
 
             TimeSpan ts = timeMe.Elapsed;
